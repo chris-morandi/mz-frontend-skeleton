@@ -1,8 +1,15 @@
 
 var path = require('path')
 var webpack = require('webpack')
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin')
+
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
+  mode: 'development',
+  devServer: {
+    hot: true
+  },
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -26,6 +33,14 @@ module.exports = {
         }
       },
       {
+        test: /\.css$/,
+        loader: 'vue-style-loader!css-loader'
+      },
+      {
+        test: /\.s[a|c]ss$/,
+        loader: 'vue-style-loader!css-loader!sass-loader'
+      },
+      {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
@@ -42,6 +57,13 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'main.css'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {

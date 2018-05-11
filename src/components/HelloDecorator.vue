@@ -34,7 +34,7 @@ export default class HelloDecorator extends Vue {
 </script>
 
 <style>
-.greeting {
+/* .greeting {
     font-size: 20px;
-}
+} */
 </style>

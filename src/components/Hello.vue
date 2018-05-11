@@ -34,7 +34,7 @@ export default Vue.extend({
 </script>
 
 <style>
-.greeting {
+/* .greeting {
     font-size: 20px;
-}
+} */
 </style>
